@@ -70,7 +70,7 @@ components:
         type: object
         required:
           - kundbehovsflode_id
-          - regelutfall
+          - resultat
         properties:
           kundbehovsflode_id:
             type: string
