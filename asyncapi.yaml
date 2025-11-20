@@ -1,0 +1,78 @@
+asyncapi: 3.0.0
+info:
+  title: Process - Vård av husdjur Async API
+  version: 1.0.0
+  description: Initiering av flöde för hantering av Vård av husdjur
+
+channels:
+  vah.kundbehovsflode.requests:
+    address: vah.kundbehovsflode.requests
+    messages:
+      VahKundbehovsflodeRequestMessage:
+        $ref: "#/components/messages/VahKundbehovsflodeRequestMessage"
+
+  vah.kundbehovsflode.responses:
+    address: vah.kundbehovsflode.responses
+    messages:
+      VahKundbehovsflodeResponseMessage:
+        $ref: "#/components/messages/VahKundbehovsflodeResponseMessage"
+
+operations:
+  VahKundbehovsflodeRequest:
+    action: receive
+    summary: Initiering av flöde för hantering av Vård av husdjur
+    channel:
+      $ref: "#/channels/vah.kundbehovsflode.requests"
+    reply:
+      address:
+        description: Resultatet skickas tillbaka till originator.
+        location: "$message.header#/replyTo"
+      channel:
+        $ref: "#/channels/vah.kundbehovsflode.responses"
+
+components:
+  schemas:
+    VahKundbehovsflodeRequestMessageHeaders:
+      type: object
+      properties:
+        replyTo:
+          type: string
+          description: Topic där response ska skickas
+        correlationId:
+          type: string
+          description: Unikt ID som kopplar ihop request & response
+
+    VahKundbehovsflodeResponseMessageHeaders:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Unikt ID som kopplar ihop request & response
+
+  messages:
+    VahKundbehovsflodeRequestMessage:
+      headers:
+        $ref: "#/components/schemas/VahKundbehovsflodeRequestMessageHeaders"
+      payload:
+        title: VahKundbehovsflodeRequestMessagePayload
+        type: object
+        required:
+          - kundbehovsflode_id
+        properties:
+          kundbehovsflode_id:
+            type: string
+
+    VahKundbehovsflodeResponseMessage:
+      headers:
+        $ref: "#/components/schemas/VahKundbehovsflodeResponseMessageHeaders"
+      payload:
+        title: VahKundbehovsflodeResponseMessagePayload
+        type: object
+        required:
+          - kundbehovsflode_id
+          - regelutfall
+        properties:
+          kundbehovsflode_id:
+            type: string
+          resultat:
+            type: string
