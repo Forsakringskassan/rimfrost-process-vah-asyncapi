@@ -49,30 +49,56 @@ components:
           type: string
           description: Unikt ID som kopplar ihop request & response
 
+    VahKundbehovsflodeRequestMessageData:
+      type: object
+      title: VahKundbehovsflodeRequestMessageData
+      required:
+        - kundbehovsflodeId
+      properties:
+        kundbehovsflodeId:
+          type: string
+          description: Kundbehovsflöde id
+
+    VahKundbehovsflodeResponseMessageData:
+      type: object
+      title: VahKundbehovsflodeResponseMessageData
+      required:
+        - kundbehovsflodeId
+        - resultat
+      properties:
+        kundbehovsflodeId:
+          type: string
+          description: Kundbehovsflöde id
+        resultat:
+          type: string
+
   messages:
     VahKundbehovsflodeRequestMessage:
       headers:
         $ref: "#/components/schemas/VahKundbehovsflodeRequestMessageHeaders"
       payload:
         title: VahKundbehovsflodeRequestMessagePayload
-        type: object
-        required:
-          - kundbehovsflode_id
-        properties:
-          kundbehovsflode_id:
-            type: string
+        allOf:
+          - $ref: "kogito-cloudevent.yaml#/components/schemas/KogitoCloudEvent"
+          - type: object
+            title: VahKundbehovsflodeRequestMessageData
+            required:
+              - data
+            properties:
+              data:
+                $ref: "#/components/schemas/VahKundbehovsflodeRequestMessageData"
 
     VahKundbehovsflodeResponseMessage:
       headers:
         $ref: "#/components/schemas/VahKundbehovsflodeResponseMessageHeaders"
       payload:
         title: VahKundbehovsflodeResponseMessagePayload
-        type: object
-        required:
-          - kundbehovsflode_id
-          - resultat
-        properties:
-          kundbehovsflode_id:
-            type: string
-          resultat:
-            type: string
+        allOf:
+          - $ref: "kogito-cloudevent.yaml#/components/schemas/KogitoCloudEvent"
+          - type: object
+            title: VahKundbehovsflodeResponseMessageData
+            required:
+              - data
+            properties:
+              data:
+                $ref: "#/components/schemas/VahKundbehovsflodeResponseMessageData"
