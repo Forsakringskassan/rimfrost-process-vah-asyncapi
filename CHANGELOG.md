@@ -1,3 +1,9 @@
+## 0.1.1 (2025-11-24)
+
+### Bug Fixes
+
+-  Cloudevent i Vah Kundflödesbehov request ([9d5d1](https://github.com/Forsakringskassan/rimfrost-process-vah-asyncapi/commit/9d5d16d85ca1cf5) Ulf Slunga)  
+
 ## 0.1.0 (2025-11-20)
 
 ### Bug Fixes
