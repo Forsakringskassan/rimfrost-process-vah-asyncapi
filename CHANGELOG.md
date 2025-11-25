@@ -1,3 +1,9 @@
+## 0.1.2 (2025-11-25)
+
+### Bug Fixes
+
+-  format uuid as uuid ([a980a](https://github.com/Forsakringskassan/rimfrost-process-vah-asyncapi/commit/a980ae7fd9d0602) Nils Elveros)  
+
 ## 0.1.1 (2025-11-24)
 
 ### Bug Fixes
