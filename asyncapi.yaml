@@ -40,6 +40,7 @@ components:
           description: Topic där response ska skickas
         correlationId:
           type: string
+          format: uuid
           description: Unikt ID som kopplar ihop request & response
 
     VahKundbehovsflodeResponseMessageHeaders:
@@ -57,6 +58,7 @@ components:
       properties:
         kundbehovsflodeId:
           type: string
+          format: uuid
           description: Kundbehovsflöde id
 
     VahKundbehovsflodeResponseMessageData:
@@ -68,6 +70,7 @@ components:
       properties:
         kundbehovsflodeId:
           type: string
+          format: uuid
           description: Kundbehovsflöde id
         resultat:
           type: string
